@@ -23,12 +23,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.set('view engine', 'ejs');
+app.set('views', __dirname + '/views');
 
 app.get("/", (req, res) => {
-  res
-    .status(200)
-    .send("Welcome to my on site")
-})
+  res.render("home", {page: { title: "Dashboard" } })
+});
 
 app.use("/", router);
 
