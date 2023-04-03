@@ -1,7 +1,11 @@
 const express = require("express");
 const router = require("./router");
-const { Book, Member, LoanBook } = require("./../models")
+const { Book, Member, LoanBook, Room } = require("./../models");
+const checkToken = require("../middlewares/checkToken");
+const baseRespone = require("../libs/base-response");
 const api = express.Router();
+const randomstring = require("randomstring");
+const { waiting, finished, running } = require("../libs/room-status");
 
 // Section Books
 api.get("/v1/books", async (req, res) => {
@@ -137,6 +141,23 @@ api.get("/v1/members/loan/:id", async (req, res) => {
   })
 
   res.status(201).json({status: "success", data: member })
+});
+
+api.post("/v1/room", checkToken, async (req, res, next) => {
+  const roomInitialize = {
+    kode: randomstring.generate({
+      length: 5,
+      charset: 'alphabet'
+    }).toUpperCase(),
+    home: req.user.id,
+    status: waiting
+  }
+  try {
+    const rooms = await Room.create(roomInitialize)
+    res.status(201).json(baseRespone(rooms, "success", "Create Room Berhasil!"))
+  } catch (error) {
+    res.status(400).json(null, "failed", error)
+  }
 });
 
 module.exports = api

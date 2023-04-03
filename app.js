@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const flash = require('express-flash');
 const passport = require("./libs/passport");
+const passportJwt = require("./libs/passport-jwt");
 
 app.use(express.json());
 app.use(express.urlencoded({
@@ -19,8 +20,13 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }));
+
+//local strategy
 app.use(passport.initialize());
 app.use(passport.session());
+
+//JWT
+app.use(passportJwt.initialize());
 
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
