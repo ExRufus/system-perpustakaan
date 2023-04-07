@@ -1,10 +1,9 @@
 const express = require("express");
 const checkRole = require("../middlewares/checkRole");
+const dashboardController = require("../controllers/dashboardController");
 const home = express.Router();
 
-home.get("/admin", checkRole(["admin"]), (req, res, next) => {
-    res.render("admin", { page: { title: "Halaman admin!" }, user: req.user });
-});
+home.get("/dashboard", checkRole(["admin"]), dashboardController.index);
 
 home.get("/pustakawan", checkRole(["user"]), (req, res, next) => {
     res.render("pustakawan", { page: { title: "Halaman pustakawan!" }, user: req.user });

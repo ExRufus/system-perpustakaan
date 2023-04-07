@@ -7,7 +7,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
-        <% if(user?) { %>
+        <% if(user) { %>
           <li class="nav-item">
             <a class="nav-link" aria-current="page" href="/profile">Profile</a>
           </li>
@@ -23,7 +23,7 @@
           <% } %>
       </ul>
       <ul class="navbar-nav mb-auto">
-        <% if(user?) { %>
+        <% if(user) { %>
           <li class="nav-item">
             <a class="btn btn-sm btn-danger text-white" aria-current="page" href="/logout">Logout</a>
           </li>

@@ -31,9 +31,7 @@ app.use(passportJwt.initialize());
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 
-app.get("/", (req, res) => {
-  res.render("home", {page: { title: "Dashboard" } })
-});
+
 
 app.use("/", router);
 

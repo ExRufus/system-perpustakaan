@@ -1,0 +1,12 @@
+<div class=" row">
+  <% for( let i= 0;  i<content.length; i++ ) { %>
+    <div class="mt-2 col-md-<%= content[i].grid %>">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><%= content[i].title %></h5>
+          <p class="card-text">Total: <%= content[i].count %></p>
+        </div>
+      </div>
+    </div>
+  <% } %>
+</div>

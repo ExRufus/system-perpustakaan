@@ -11,12 +11,16 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      
+      this.belongsTo(models.User, {
+        foreignKey: 'win', // relasinya
+        as: 'user' // sebagai user
+      });
     }
   }
   Room.init({
     kode: DataTypes.STRING,
     home: DataTypes.INTEGER,
-    status: DataTypes.STRING,
     away: DataTypes.INTEGER,
     win: DataTypes.INTEGER,
     status: DataTypes.STRING

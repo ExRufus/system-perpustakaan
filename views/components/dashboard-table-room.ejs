@@ -1,0 +1,23 @@
+<div class="row mt-5">
+  <div class="col-md-12">
+    <h3>Table Rooms</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <td>Code</td>
+          <td>Status</td>
+          <td>Winner</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% rooms.forEach(function(room) { %>
+          <tr>
+            <td><%= room.kode %></td>
+            <td><%= room.status %></td>
+            <td><%= (room.user) ? room.user.email : "Belum ada Pemenang" %></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
+</div>
